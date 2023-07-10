@@ -1,0 +1,36 @@
+@keyframes bounce{
+    from{
+        transform: translate3d(0,0,0);
+    }
+    to{
+        transform: translate3d(600px,0,0);
+    }
+}
+
+#ball{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;    /* curves it so much that it looks like a ball*/
+    background-color: plum;
+
+    /*animation: bounce 2s linear; /* bounce animation in two sec duration using the linear func. (default is ease func.) */
+    /*animation-direction: alternate;   /*plays the animation in reverse when complite*/
+    /*animation-iteration-count:2;   /*plays the animation loop infinitly */
+}
+
+.row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+*{
+    background-color: blueviolet;
+}
+
+#click-me {
+  width: 150px;
+  height: 50px;
+}
+.button{
+    padding: 50px;
+}
