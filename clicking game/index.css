@@ -1,0 +1,30 @@
+*{
+    background-color: rgba(215, 129, 252, 0.652);
+}
+.heading{
+    text-align: center;
+    padding: auto;
+    margin:50px;
+}
+.button{
+    text-align: center;
+}
+.labels{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#button{
+    width: 25%;
+    height: 50px;
+    background-color: rgba(128, 232, 197, 0.796);
+}
+#time{
+    text-align: center;
+    margin:auto;
+    padding: 10%;
+}
+#score{
+    text-align: center;
+    margin: auto;
+    padding: 10%;
+}
