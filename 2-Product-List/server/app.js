@@ -15,7 +15,7 @@ require("express-async-errors");
 
 
 // Routes:
-
+app.use(require('./app/routes/product.route'))
 
 
 app.use(require("./app/errorHandler"));
