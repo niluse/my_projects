@@ -31,9 +31,7 @@ const Homepage = () => {
                     <p>Loading...</p>
                 ) : (
                     backendData.map((data) => (
-                        <div className="product-card" key={data.id}>
-                            <ProductCard data = {data} />
-                        </div>
+                            <ProductCard {...data} key={data.id} />
                     ))
                 )
             }

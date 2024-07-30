@@ -16,8 +16,32 @@
 
 .header{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 30px;
+}
+
+.header-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-list-item{
+    padding: 10px;
+    background-color: rgb(250, 237, 212);
+    border-radius: 5px;
+    color: rgb(54, 54, 54);
+    transition: all .5s ease-in;
+}
+
+.header-list-item:hover{
+    padding: 13px;
+    background-color: rgb(252, 232, 196);
+    border-radius: 8px;
+    color: rgb(41, 41, 41);
 }
 
 header{

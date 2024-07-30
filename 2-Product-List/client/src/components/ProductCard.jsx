@@ -1,12 +1,14 @@
 import React from 'react'
 
-const ProductCard = ({ id,category, description, image, price, title }) => {
+const ProductCard = ({ id, image, price, title }) => {
   return (
-    <div className="product-card" key = {id}>
+    <div className="product-card">
         <img src={image} alt={title} />
-        <div className="product-detials">
-        <h2>{title}</h2>
-        <p>{price}</p>
+        <div className="product-price">
+          <p>{price} $</p>
+        </div>
+        <div className="product-title">
+          <h2>{title}</h2>
         </div>
     </div>
   )
