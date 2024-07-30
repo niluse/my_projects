@@ -5,7 +5,7 @@ const path = require('path');
 // Initialize Sequelize with the existing database
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: './db.sqlite3'
+  storage: './productdb.sqlite3'
 });
 
 // Define the Product model
@@ -62,7 +62,6 @@ Rating.belongsTo(Product, {
   foreignKey: 'productId'
 });
 
-
 async function importData() {
   try {
     await sequelize.authenticate();
@@ -74,9 +73,18 @@ async function importData() {
 
     // Insert data into the database
     for (const item of data) {
-      await Product.create({
-        photographer: item.photographer,
-        src: item.src,
+      const product = await Product.create({
+        title: item.title,
+        price: item.price,
+        description: item.description,
+        category: item.category,
+        image: item.image
+      });
+
+      await Rating.create({
+        rate: item.rating.rate,
+        count: item.rating.count,
+        productId: product.id
       });
     }
 
