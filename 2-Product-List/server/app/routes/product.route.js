@@ -13,6 +13,6 @@ router
   .patch(product.update)
   .delete(product.delete);
 
-router.route("/:category").get(product.listByCategory);
+router.route("/category/:category").get(product.listByCategory);
 
 module.exports = router;

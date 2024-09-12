@@ -111,6 +111,49 @@ module.exports = {
     }
   },
 
+  // listByCategory: async (req, res) => {
+  //   try {
+  //     const category = req.params.category;
+  //     const sql = `
+  //       SELECT
+  //         products.id,
+  //         products.title,
+  //         products.price,
+  //         products.description,
+  //         products.category,
+  //         products.image,
+  //         products.createdAt,
+  //         products.updatedAt,
+  //         rating.id AS rating_id,
+  //         rating.rate AS rating_rate,
+  //         rating.count AS rating_count,
+  //         rating.productId AS rating_productId,
+  //         rating.createdAt AS rating_createdAt,
+  //         rating.updatedAt AS rating_updatedAt
+  //       FROM products
+  //       LEFT OUTER JOIN ratings ON products.id = rating.productId
+  //       WHERE products.category = ?`;
+
+  //     // Kullanıcıdan gelen category'yi SQL sorgusunda kullanıyoruz.
+  //     db.all(sql, category, (err, rows) => {
+  //       if (err) {
+  //         return res.status(500).send({ error: true, message: err.message });
+  //       }
+
+  //       // Veriyi başarılı şekilde çekersek frontend'e döndürüyoruz.
+  //       res.status(200).send({
+  //         error: false,
+  //         result: rows,
+  //       });
+  //     });
+  //   } catch (error) {
+  //     res.status(500).send({
+  //       error: true,
+  //       message: error.message,
+  //     });
+  //   }
+  // },
+
   listByCategory: async (req, res) => {
     try {
       const category = req.params.category;
