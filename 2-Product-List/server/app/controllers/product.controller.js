@@ -2,21 +2,33 @@ const { Product, Rating, sequelize } = require("../models/product.model.js");
 
 module.exports = {
   list: async (req, res) => {
-    console.log("request recieved: ", req.params);
     try {
+      // Log relevant parts of the request for debugging
+      console.log("Request method:", req.method);
+      console.log("Request URL:", req.url);
+      console.log("Request headers:", req.headers);
+
       const data = await Product.findAndCountAll({ include: Rating });
+
+      // Serialize the plain data values
+      const plainData = data.rows.map((item) => item.get({ plain: true }));
+
       res.status(200).send({
         error: false,
-        result: data,
-        request: req,
+        result: {
+          count: data.count,
+          rows: plainData,
+        },
       });
     } catch (error) {
+      console.error("Error occurred:", error); // Log the full error
       res.status(500).send({
         error: true,
         message: error.message,
       });
     }
   },
+
   create: async (req, res) => {
     const { rating, ...productData } = req.body; // req.body'den rating ve product verilerini ayrıştır
     try {
@@ -101,15 +113,30 @@ module.exports = {
 
   listByCategory: async (req, res) => {
     try {
-      console.log("Category received:", req.params.category);
-      const category = req.params.category; // URL'den kategoriyi al
+      const category = req.params.category;
+
+      // Eğer 'favicon.ico' gelirse isteği atla
+      if (category === "favicon.ico") {
+        return res.status(204).send(); // No content döndür
+      }
+
       const data = await Product.findAndCountAll({
-        where: { category }, // Kategoriye göre filtrele
+        where: { category },
         include: Rating,
       });
+
+      // Veriyi kontrol etmek için console log
+      console.log(data);
+
+      // Veriyi düz formatta gönder
+      const plainData = data.rows.map((item) => item.get({ plain: true }));
+
       res.status(200).send({
         error: false,
-        result: data,
+        result: {
+          count: data.count,
+          rows: plainData,
+        },
       });
     } catch (error) {
       res.status(500).send({

@@ -14,6 +14,8 @@ const Homepage = () => {
         ? "http://127.0.0.1:8000"
         : `http://127.0.0.1:8000/${category}`;
 
+    console.log("Fetching products from URL: ", url); // URL'yi konsolda kontrol et
+
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
