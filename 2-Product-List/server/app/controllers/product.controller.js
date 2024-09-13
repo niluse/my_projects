@@ -3,11 +3,6 @@ const { Product, Rating, sequelize } = require("../models/product.model.js");
 module.exports = {
   list: async (req, res) => {
     try {
-      // Log relevant parts of the request for debugging
-      console.log("Request method:", req.method);
-      console.log("Request URL:", req.url);
-      console.log("Request headers:", req.headers);
-
       const data = await Product.findAndCountAll({ include: Rating });
 
       // Serialize the plain data values
@@ -21,7 +16,7 @@ module.exports = {
         },
       });
     } catch (error) {
-      console.error("Error occurred:", error); // Log the full error
+      // console.error("Error occurred:", error); // Log the full error
       res.status(500).send({
         error: true,
         message: error.message,
