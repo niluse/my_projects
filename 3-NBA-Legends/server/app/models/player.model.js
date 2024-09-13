@@ -51,7 +51,7 @@ Statistics.belongsTo(Player, {
 });
 
 //* Syncronization:
-sequelize.sync(); // CREATE TABLE
+// sequelize.sync(); // CREATE TABLE
 // sequelize.sync({ force: true }) // DROP TABLE & CREATE TABLE
 // sequelize.sync({ alter: true }) // TO BACKUP & DROP TABLE & CREATE TABLE & FROM BACKUP
 
@@ -64,4 +64,4 @@ sequelize
 //     .then(() => console.log('*DB Synced'))
 //     .catch(() => console.log('*DB Sync Error'));
 
-module.exports = { Product, Rating };
+module.exports = { Player, Statistics };
