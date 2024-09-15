@@ -4,7 +4,6 @@ import CardContainer from "../components/CardContainer";
 
 const Homepage = () => {
   const [backendData, setBackendData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
 
   const url = "http://127.0.0.1:8000";
 
