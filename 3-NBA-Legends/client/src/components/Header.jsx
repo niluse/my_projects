@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import image from "../assets/nba-logo.png";
+import PlayerCard from "./PlayerCard";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,6 +18,14 @@ const Header = () => {
     }
   };
 
+  useEffect(() => {
+    try {
+      handleSearch();
+    } catch (error) {
+      console.error("error on loading data: ", error);
+    }
+  }, [searchTerm]);
+
   return (
     <div>
       <img src={image} alt="nba logo" />
@@ -25,16 +34,15 @@ const Header = () => {
         placeholder="Search Players"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") handleSearch();
-        }}
       />
-      <button onClick={handleSearch}>Search</button>
-      <ul>
-        {searchResults.map((player) => (
-          <li key={player.id}>{player.name}</li>
-        ))}
-      </ul>
+      {searchResults.map((player) => (
+        <PlayerCard
+          key={player.id}
+          name={player.name}
+          img={player.img}
+          statistic={player.statistic}
+        />
+      ))}
     </div>
   );
 };
