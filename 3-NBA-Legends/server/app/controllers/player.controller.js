@@ -1,4 +1,5 @@
 const { Player, Statistics, sequelize } = require("../models/player.model.js");
+const { Op } = require("sequelize"); // Sequelize'den Op operatörünü import ediyoruz
 
 module.exports = {
   list: async (req, res) => {
@@ -114,6 +115,30 @@ module.exports = {
     } else {
       res.errorStatusCode = 404;
       throw new Error("Not Found");
+    }
+  },
+
+  search: async (req, res) => {
+    const searchTerm = req.query.q; // Query parametresinden arama terimini al
+    try {
+      const data = await Player.findAll({
+        where: {
+          name: {
+            [Op.like]: `%${searchTerm}%`, // İsimlerde arama yaparken arama terimini içerenleri getir
+          },
+        },
+        include: Statistics, // İlgili istatistikleri de dahil et
+      });
+
+      res.status(200).send({
+        error: false,
+        result: data,
+      });
+    } catch (error) {
+      res.status(500).send({
+        error: true,
+        message: error.message,
+      });
     }
   },
 };
